@@ -5,11 +5,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       post :auth, to: "authentication#create"
 
-      resources :locations do
+      resources :user_details do
         resources :recordings
       end
     end
   end
 
-  resources :locations
+  resources :user_details
 end
