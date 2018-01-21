@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users do
+    member do
+      get :confirm_email
+    end
+  end
 
   namespace :api do
     namespace :v1 do
