@@ -4,6 +4,8 @@ class Api::V1::UserDetailsController < ApiController
 
   # http://localhost:3000/api/v1/locations/1.json
   def show
+    @user_detail = Location.find(params[:id])
+    render json: {userinfo: @user_detail}
   end
 
   def create
@@ -14,12 +16,18 @@ class Api::V1::UserDetailsController < ApiController
       UserMailer.welcome_email(@user).deliver_now
 
       render json: {result: "registration sucessfull"}
-   
-
-
-
 
   end
+
+
+  def update
+
+      Location.find(params[:id]).update(email: params[:email], first_name: params[:first_name], last_name: params[:last_name], phone: params[:phone], address_1: params[:address_1], address_2: params[:address_2], city: params[:city], pin_code: params[:pin_code], district: params[:district], state: params[:state], is_verified: params[:is_verified], created_by: params[:created_by])
+      render json: {result: "updation sucessfull"}
+
+  end
+
+
 
  
 
