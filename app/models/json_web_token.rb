@@ -3,7 +3,7 @@ class JsonWebToken
 
   # Takes in a hash and returns a base64-encoded text.
   def self.encode(payload)
-    expiration = 10.minutes.from_now.to_i
+    expiration = 43800.minutes.from_now.to_i
     JWT.encode(payload.merge(exp: expiration), Rails.application.secrets.secret_key_base)
   end
 

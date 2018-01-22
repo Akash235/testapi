@@ -4,11 +4,24 @@ class Api::V1::UserDetailsController < ApiController
 
   # http://localhost:3000/api/v1/locations/1.json
   def show
-    @user_detail = Location.find(params[:id])
-    render json: {userinfo: @user_detail}
+
+
+      header  = request.headers['Authorization']
+      id = JsonWebToken.decode header
+      if id["sub"].nil?
+
+        render json: {result: "Sorry, you need to sign in first"}
+
+      else
+        @user_detail = Location.find(params[:id])
+        render json: {userinfo: @user_detail}
+      end
+
   end
 
   def create
+
+
     	@user_detail = Location.create(email: params[:email], first_name: params[:first_name], last_name: params[:last_name], phone: params[:phone], address_1: params[:address_1], address_2: params[:address_2], city: params[:city], pin_code: params[:pin_code], district: params[:district], state: params[:state], is_verified: params[:is_verified], created_by: params[:created_by])
     	
     	@user = User.create(email: @user_detail.email, password: params[:password], password_confirmation: params[:password])
@@ -22,8 +35,18 @@ class Api::V1::UserDetailsController < ApiController
 
   def update
 
-      Location.find(params[:id]).update(email: params[:email], first_name: params[:first_name], last_name: params[:last_name], phone: params[:phone], address_1: params[:address_1], address_2: params[:address_2], city: params[:city], pin_code: params[:pin_code], district: params[:district], state: params[:state], is_verified: params[:is_verified], created_by: params[:created_by])
-      render json: {result: "updation sucessfull"}
+      header  = request.headers['Authorization']
+      id = JsonWebToken.decode header
+      if id["sub"].nil?
+
+        render json: {result: "Sorry, you need to sign in first"}
+
+      else
+          Location.find(id["sub"]).update(email: params[:email], first_name: params[:first_name], last_name: params[:last_name], phone: params[:phone], address_1: params[:address_1], address_2: params[:address_2], city: params[:city], pin_code: params[:pin_code], district: params[:district], state: params[:state], is_verified: params[:is_verified], created_by: params[:created_by])
+          render json: {result: "updation sucessfull"}
+      end
+
+
 
   end
 

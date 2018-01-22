@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -49,15 +49,15 @@ Rails.application.configure do
 
    config.assets.raise_runtime_errors = true
    config.action_mailer.delivery_method = :smtp
-   config.action_mailer.smtp_settings = {
-      :user_name => 'luxurycar.pune@gmail.com',
-      :password => 'Tushar@17',
-      :domain => 'SendGrid.com',
-      :address => 'smtp.sendgrid.net',
-      :port => 587,
-      :authentication => :plain,
-      :enable_starttls_auto => true
-    }
+ config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => "demo.qset@gmail.com",
+    :password             => "Bhushan@17",
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+
+  }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
