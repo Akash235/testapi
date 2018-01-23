@@ -28,7 +28,7 @@ class Api::V1::UserDetailsController < ApiController
     	
     	@user = User.create(email: @user_detail.email, password: params[:password], password_confirmation: params[:password])
     	
-      UserMailer.welcome_email(@user).deliver_now
+      
 
       render json: {result: "registration sucessfull"}
 
