@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       post :'auth/token', to: "authentication#create"
 
+      get :'auth/permissions', to: "permission#show"
+
+      get :'auth/user', to: "user_details#show"
+
       resources :user_details do
         resources :recordings
       end

@@ -4,7 +4,7 @@ class Api::V1::UserDetailsController < ApiController
 
   # http://localhost:3000/api/v1/locations/1.json
   def show
-
+      
 
       header  = request.headers['Authorization']
       id = JsonWebToken.decode header
@@ -13,7 +13,9 @@ class Api::V1::UserDetailsController < ApiController
         render json: {result: "Sorry, you need to sign in first"}
 
       else
-        @user_detail = Location.find(params[:id])
+
+
+        @user_detail = Location.find(id["sub"])
         render json: {userinfo: @user_detail}
       end
 
