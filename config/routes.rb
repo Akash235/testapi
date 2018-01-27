@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post :'auth/token', to: "authentication#create"
-
+      post :'auth/logout', to: "authentication#destroy"
       get :'auth/permissions', to: "permission#show"
 
       get :'auth/user', to: "user_details#show"

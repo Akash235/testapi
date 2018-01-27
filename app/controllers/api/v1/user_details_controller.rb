@@ -13,10 +13,17 @@ class Api::V1::UserDetailsController < ApiController
         render json: {result: "Sorry, you need to sign in first"}
 
       else
+        
 
+        num = JsonToken.where(token: header).ids
+        numtos = num.to_s.split("[").last.split("]").first
+        if numtos.nil?
+          render json: {result: "Sorry, you need to sign in first"}
+        else
 
-        @user_detail = Location.find(id["sub"])
-        render json: {userinfo: @user_detail}
+          @user_detail = Location.find(id["sub"])
+          render json: {userinfo: @user_detail}
+        end
       end
 
   end
@@ -46,8 +53,14 @@ class Api::V1::UserDetailsController < ApiController
         render json: {result: "Sorry, you need to sign in first"}
 
       else
-          Location.find(id["sub"]).update(email: params[:email], first_name: params[:first_name], last_name: params[:last_name], phone: params[:phone], address_1: params[:address_1], address_2: params[:address_2], city: params[:city], pin_code: params[:pin_code], district: params[:district], state: params[:state], is_verified: params[:is_verified], created_by: params[:created_by])
-          render json: {result: "updation sucessfull"}
+          if numtos.nil?
+            render json: {result: "Sorry, you need to sign in first"}
+          else
+
+            Location.find(id["sub"]).update(email: params[:email], first_name: params[:first_name], last_name: params[:last_name], phone: params[:phone], address_1: params[:address_1], address_2: params[:address_2], city: params[:city], pin_code: params[:pin_code], district: params[:district], state: params[:state], is_verified: params[:is_verified], created_by: params[:created_by])
+            render json: {result: "updation sucessfull"}
+
+          end
       end
 
 
