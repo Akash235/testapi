@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post :'auth/logout', to: "authentication#destroy"
       get :'auth/permissions', to: "permission#show"
 
-      get :'auth/user', to: "user_details#show"
+      get :'User', to: "user_details#show"
 
       resources :user_details do
         resources :recordings

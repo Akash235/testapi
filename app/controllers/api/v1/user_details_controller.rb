@@ -22,7 +22,8 @@ class Api::V1::UserDetailsController < ApiController
         else
 
           @user_detail = Location.find(id["sub"])
-          render json: {userinfo: @user_detail}
+          
+          render json: {userinfo: {id: @user_detail.id, name: @user_detail.name, email: @user_detail.email, first_name: @user_detail.first_name, last_name: @user_detail.last_name, phone: @user_detail.phone, address_1: @user_detail.address_1, address_2: @user_detail.address_2, city: @user_detail.city, pin_code: @user_detail.pin_code, district: @user_detail.district, state: @user_detail.state, is_verified: @user_detail.is_verified, created_by: @user_detail.created_by}}
         end
       end
 
