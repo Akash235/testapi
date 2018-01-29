@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       post :'auth/token', to: "authentication#create"
       post :'auth/logout', to: "authentication#destroy"
       get :'auth/permissions', to: "permission#show"
+      put :'ChangePassword', to: "password#update"
+      get :'auth/currentusername', to: "authentication#show"
 
       get :'User', to: "user_details#show"
 
