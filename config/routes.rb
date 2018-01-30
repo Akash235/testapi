@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get :'auth/permissions', to: "permission#show"
       put :'ChangePassword', to: "password#update"
       get :'auth/currentusername', to: "authentication#show"
+      get :'Users',  to: "users#show"
 
       get :'User', to: "user_details#show"
 
