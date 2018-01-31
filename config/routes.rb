@@ -16,6 +16,11 @@ Rails.application.routes.draw do
       get :'Users',  to: "users#show"
 
       get :'User', to: "user_details#show"
+      # to create update and delete the order by user id 
+      post :'Order', to: "orders#create"
+      put :'Order/:id', to: "orders#update"
+      delete :'Order/:id', to: "orders#destroy"
+      get :'Order/:id', to: "orders#show"
 
       resources :user_details do
         resources :recordings

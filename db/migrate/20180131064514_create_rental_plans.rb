@@ -7,7 +7,7 @@ class CreateRentalPlans < ActiveRecord::Migration[5.0]
 	  t.string :Hours
 	  t.float :Rate  
 	  t.string :DistanceAllowed
-	  t.flaot :PerHourExceededRate
+	  t.float :PerHourExceededRate
 	  t.float :PerKmExceededRate
 
 

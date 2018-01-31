@@ -1,7 +1,7 @@
 class CreateOrderFeedbacks < ActiveRecord::Migration[5.0]
   def change
     create_table :order_feedbacks do |t|
-		t.references :Order : 
+		t.references :Order 
 		t.string :Vehicle_Rating
 		t.string :Comments
 		t.string :Driver_Behaviour_Rating

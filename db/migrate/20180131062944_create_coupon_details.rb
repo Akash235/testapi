@@ -9,7 +9,7 @@ class CreateCouponDetails < ActiveRecord::Migration[5.0]
 	  t.boolean :isFixedAmountDiscount
 	  t.float :discountApplicable
 	  t.boolean :isPerUser 
-	  t.int :reuseCount
+	  t.integer :reuseCount
 
 
       t.timestamps
