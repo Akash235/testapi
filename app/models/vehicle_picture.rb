@@ -1,0 +1,2 @@
+class VehiclePicture < ApplicationRecord
+end

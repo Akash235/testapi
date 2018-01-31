@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127173624) do
+ActiveRecord::Schema.define(version: 20180130185343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "invoices", force: :cascade do |t|
+    t.string   "invoiceNumber"
+    t.float    "invoiceAmount"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "json_tokens", force: :cascade do |t|
     t.string   "token"
@@ -40,6 +47,19 @@ ActiveRecord::Schema.define(version: 20180127173624) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.float    "orderTotal"
+    t.string   "Order_Estimate"
+    t.string   "Order_Advance"
+    t.string   "Other_requirements"
+    t.string   "Customer_request"
+    t.string   "isBookedByAdmin"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
+  end
+
   create_table "recordings", force: :cascade do |t|
     t.integer  "temp"
     t.string   "status"
@@ -47,6 +67,31 @@ ActiveRecord::Schema.define(version: 20180127173624) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["location_id"], name: "index_recordings_on_location_id", using: :btree
+  end
+
+  create_table "user_addresses", force: :cascade do |t|
+    t.boolean  "isDefault"
+    t.string   "Address_1"
+    t.string   "Address_2"
+    t.string   "Pincode"
+    t.string   "City"
+    t.string   "District"
+    t.string   "State"
+    t.string   "Lon"
+    t.string   "Lat"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_addresses_on_user_id", using: :btree
+  end
+
+  create_table "user_types", force: :cascade do |t|
+    t.string   "permissions"
+    t.text     "user_type"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_user_types_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

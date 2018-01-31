@@ -1,0 +1,2 @@
+class ScheduledRideDetail < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class EnquiriesLead < ApplicationRecord
+end

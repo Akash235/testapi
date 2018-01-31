@@ -1,0 +1,2 @@
+class VehicleRentalDetail < ApplicationRecord
+end
