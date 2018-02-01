@@ -1,4 +1,4 @@
-class Api::V1::OrdersController < ApiController
+class Api::V1::DecorationsController < ApiController
   before_action :set_order, only: [:show, :update, :destroy]
 
   def show
@@ -8,7 +8,7 @@ class Api::V1::OrdersController < ApiController
     if numtos.nil?
       render json: {result: "Sorry, you need to sign in first"}
     else
-      show = @order
+      show = @decoration
       render json: show, except: [:created_at,:updated_at]
 
      end
@@ -39,7 +39,7 @@ class Api::V1::OrdersController < ApiController
         # }
         # }
         # " 
-      Order.create(order_params)
+      Decoration.create(order_params)
       render json: {status: 200, message: "success", orderId: 1234,userId: params[:userId]}
     end
   end
@@ -51,7 +51,7 @@ class Api::V1::OrdersController < ApiController
     if numtos.nil?
       render json: {result: "Sorry, you need to sign in first"}
     else
-      @order.update(order_params)
+      @decoration.update(order_params)
       render json: {status: 200, message: "success",userId: params[:userId]}
     end
   end
@@ -64,7 +64,7 @@ class Api::V1::OrdersController < ApiController
     if numtos.nil?
       render json: {result: "Sorry, you need to sign in first"}
     else
-      @order.delete
+      @decoration.delete
       render json: {status: 200, message: "success",userId: params[:userId]}
     end
   end
@@ -72,11 +72,11 @@ class Api::V1::OrdersController < ApiController
   private
 
   def set_order
-    @order = Order.find(params[:id])
+    @decoration = Decoration.find(params[:id])
   end
 
   def order_params
-    params.require(:orders).permit!
+    params.require(:decoration).permit!
   end
 
 

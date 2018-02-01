@@ -6,9 +6,9 @@ class CreateVehicles < ActiveRecord::Migration[5.0]
 	  t.boolean :isActive
 	  t.string :Color
 	  t.boolean :Is_rental
-	  t.references :Vehicle_model
+	  t.references :vehicle_model
 	  t.string :Vehicle_Notes
-	  t.references :Rental_Detail
+	  t.references :vehicle_rental_detail
 	  t.string :activeFrom
 
       t.timestamps

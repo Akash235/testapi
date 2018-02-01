@@ -1,4 +1,8 @@
-class Api::V1::OrdersController < ApiController
+class Api::V1::VehicleRentalDetailsController < ApiController
+ 
+
+  # POST http://localhost:3000/api/v1/auth
+  # $ curl --data "user[email]=user@example.com&user[password]=password" http://localhost:3000/api/v1/auth
   before_action :set_order, only: [:show, :update, :destroy]
 
   def show
@@ -8,15 +12,15 @@ class Api::V1::OrdersController < ApiController
     if numtos.nil?
       render json: {result: "Sorry, you need to sign in first"}
     else
-      show = @order
+      show = @vehicle_rental_detail
       render json: show, except: [:created_at,:updated_at]
 
-     end
+    end
   end
   # use this url to create the order :- 
   # curl -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImV4cCI6MTUyMDAxOTk0OX0.dVW5OzQdJfv3JCumbAly4waHXTEaliftyqdqEsUpSN8" -X PUT -d '{"userId":"1","orders":{"orderTotal":"50.00","orderEstimate":"10.00","orderAdvance":"5.00","other_requirements":"some text","customer_request":"some text","couponId":"1","isBookedByAdmin":"1","isDefault":true}}' http://localhost:3000/api/v1/Order
   def create
-   
+  
     header  = request.headers['Authorization']
     numtos = JsonAuthService.check(header)
     if numtos.nil?
@@ -39,7 +43,7 @@ class Api::V1::OrdersController < ApiController
         # }
         # }
         # " 
-      Order.create(order_params)
+      VehicleRentalDetail.create(order_params)
       render json: {status: 200, message: "success", orderId: 1234,userId: params[:userId]}
     end
   end
@@ -51,7 +55,7 @@ class Api::V1::OrdersController < ApiController
     if numtos.nil?
       render json: {result: "Sorry, you need to sign in first"}
     else
-      @order.update(order_params)
+      @vehicle_rental_detail.update(order_params)
       render json: {status: 200, message: "success",userId: params[:userId]}
     end
   end
@@ -64,7 +68,7 @@ class Api::V1::OrdersController < ApiController
     if numtos.nil?
       render json: {result: "Sorry, you need to sign in first"}
     else
-      @order.delete
+      @vehicle_rental_detail.delete
       render json: {status: 200, message: "success",userId: params[:userId]}
     end
   end
@@ -72,12 +76,14 @@ class Api::V1::OrdersController < ApiController
   private
 
   def set_order
-    @order = Order.find(params[:id])
+    @vehicle_rental_detail = VehicleRentalDetail.find(params[:id])
   end
 
   def order_params
-    params.require(:orders).permit!
+    params.require(:vehicle_rental_detail).permit!
   end
+
+
 
 
 end

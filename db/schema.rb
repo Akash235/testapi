@@ -227,14 +227,14 @@ ActiveRecord::Schema.define(version: 20180131064514) do
     t.boolean  "isActive"
     t.string   "Color"
     t.boolean  "Is_rental"
-    t.integer  "Vehicle_model_id"
+    t.integer  "vehicle_model_id"
     t.string   "Vehicle_Notes"
-    t.integer  "Rental_Detail_id"
+    t.integer  "vehicle_rental_detail_id"
     t.string   "activeFrom"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["Rental_Detail_id"], name: "index_vehicles_on_Rental_Detail_id", using: :btree
-    t.index ["Vehicle_model_id"], name: "index_vehicles_on_Vehicle_model_id", using: :btree
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["vehicle_model_id"], name: "index_vehicles_on_vehicle_model_id", using: :btree
+    t.index ["vehicle_rental_detail_id"], name: "index_vehicles_on_vehicle_rental_detail_id", using: :btree
   end
 
 end
